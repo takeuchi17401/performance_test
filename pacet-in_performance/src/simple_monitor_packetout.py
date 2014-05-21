@@ -15,15 +15,15 @@ class SimpleMonitor(simple_switch_13.SimpleSwitch13):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
 
     # get_protocol(eth/ipv6)
-    PROTPCOL = 'ipv6'
+    PROTPCOL = 'eth'
     
     packet_in_cnt = int()
     packet_in_cnt_s = int()
     
-    Request_statsCsv = '/root/ryu/ryu/Request_stats.csv'
-    EventOFPFlowStatsReplyCsv = '/root/ryu/ryu/EventOFPFlowStatsReply.csv'
-    EventOFPPortStatsReplyCsv = '/root/ryu/ryu/EventOFPPortStatsReply.csv'
-    EventOFPPacketInCsv = '/root/ryu/ryu/EventOFPPacketIn.csv'
+    Request_statsCsv = '/root/ryu/ryu/app/Request_stats.csv'
+    EventOFPFlowStatsReplyCsv = '/root/ryu/ryu/app/EventOFPFlowStatsReply.csv'
+    EventOFPPortStatsReplyCsv = '/root/ryu/ryu/app/EventOFPPortStatsReply.csv'
+    EventOFPPacketInCsv = '/root/ryu/ryu/app/EventOFPPacketIn.csv'
 
     def __init__(self, *args, **kwargs):
         super(SimpleMonitor, self).__init__(*args, **kwargs)
@@ -118,12 +118,12 @@ class SimpleMonitor(simple_switch_13.SimpleSwitch13):
         
         if out_port != ofproto.OFPP_FLOOD:
             
-            if self.PROTPCOL in 'ipv4':
+            if self.PROTPCOL in 'eth':
                 # match
-#                match = parser.OFPMatch(in_port=in_port, eth_dst=dst )
+                match = parser.OFPMatch(in_port=in_port, eth_dst=dst )
                 #miss match
                 match = parser.OFPMatch(in_port=in_port, eth_type=0, eth_dst=dst )
-            elif self.PROTPCOL in 'ipv6' or self.PROTPCOL in 'icmpv6':
+            elif self.PROTPCOL in 'ipv6':
                 match = parser.OFPMatch(in_port=in_port, eth_type=ether.ETH_TYPE_IPV6, ip_proto=inet.IPPROTO_ICMPV6, ipv6_dst=dst)
 
             self.add_flow(datapath, 1, match, actions)
