@@ -20,10 +20,10 @@ class SimpleMonitor(simple_switch_13.SimpleSwitch13):
     packet_in_cnt = int()
     packet_in_cnt_s = int()
     
-    Request_statsCsv = '/root/ryu/ryu/app/Request_stats.csv'
-    EventOFPFlowStatsReplyCsv = '/root/ryu/ryu/app/EventOFPFlowStatsReply.csv'
-    EventOFPPortStatsReplyCsv = '/root/ryu/ryu/app/EventOFPPortStatsReply.csv'
-    EventOFPPacketInCsv = '/root/ryu/ryu/app/EventOFPPacketIn.csv'
+    Request_statsCsv = './csv/Request_stats.csv'
+    EventOFPFlowStatsReplyCsv = './csv/EventOFPFlowStatsReply.csv'
+    EventOFPPortStatsReplyCsv = './csv/EventOFPPortStatsReply.csv'
+    EventOFPPacketInCsv = './csv/EventOFPPacketIn.csv'
 
     def __init__(self, *args, **kwargs):
         super(SimpleMonitor, self).__init__(*args, **kwargs)
