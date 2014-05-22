@@ -46,7 +46,7 @@ class IcmpResponder(app_manager.RyuApp):
 #        if pkt_arp:
 #            self._handle_arp(datapath, port, pkt_ethernet, pkt_arp)
 #            return
-        """ # IPv6
+        """ # IPv6 update
         pkt_ipv4 = pkt.get_protocol(ipv4.ipv4)
         pkt_icmp = pkt.get_protocol(icmp.icmp)
 
@@ -87,7 +87,7 @@ class IcmpResponder(app_manager.RyuApp):
 #        pkt.add_protocol(ipv4.ipv4(dst=pkt_ipv4.src,
 #                                   src=self.ip_addr,
 #                                   proto=pkt_ipv4.proto))
-        """ IPv6
+        """ IPv6 update
         pkt.add_protocol(ipv4.ipv4(dst=pkt_ipv.src,
                                    src=pkt_ethernet.src,
                                    proto=pkt_ipv.proto))
